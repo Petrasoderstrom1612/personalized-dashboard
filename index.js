@@ -32,6 +32,17 @@ const getCryptos = async () => {
         if (!res.ok){throw new Error (`HTTP error! Status: ${res.status}`)}
         const data = await res.json()
         console.log("bitcoin data", data)
+        
+        document.getElementById("crypto-top").innerHTML = `
+        <img src="${data.image.small}" title="${data.name}" alt="${data.name}"/>
+        <span>${data.name}</span>
+        `
+        
+        document.getElementById("crypto").innerHTML += `
+        <p>🎯: ${data.market_data.current_price.sek} SEK</p>
+        <p>👆: ${data.market_data.low_24h.sek} SEK</p>
+        <p>👇: ${data.market_data.high_24h.sek} SEK</p>
+        `
     }
     catch (error) {
         console.error(error)
