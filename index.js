@@ -1,5 +1,7 @@
 const author = document.getElementById("author")
 
+document.getElementById("time").innerText = `${new Date().toLocaleTimeString("en-US", {timeStyle: "short"})}`
+
 const getBkgImg = async () => { 
     try{
         const res = await fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
