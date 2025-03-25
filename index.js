@@ -1,6 +1,8 @@
 const author = document.getElementById("author")
 
-document.getElementById("time").innerText = `${new Date().toLocaleTimeString("en-US", {timeStyle: "short"})}`
+setInterval (() => { //same to setTimeout
+    document.getElementById("time").innerText = `${new Date().toLocaleTimeString("en-US", {timeStyle: "short"})}` //08:59 AM short means no second included
+}, 1000)
 
 const getBkgImg = async () => { 
     try{
