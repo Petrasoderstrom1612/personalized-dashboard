@@ -69,13 +69,13 @@ let latitude
 let longitude
 
 const getWeather = async () => {
-    navigator.geolocation.getCurrentPosition(async position => {
+    navigator.geolocation.getCurrentPosition(async position => { //you need asyn here so it works
         latitude = position.coords.latitude
         longitude = position.coords.longitude
         console.log(latitude, longitude)
 
         try{
-            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${appid}`)
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${appid}&units=metric`)
             if (!res.ok){throw new Error (`HTTP error! Status: ${res.status}`)}
             const data = await res.json()
             console.log(data)
