@@ -1,9 +1,17 @@
-const author = document.getElementById("author")
+import  {appid } from "./config.js";
 
-setInterval (() => { //same to setTimeout
+console.log(appid)
+
+const author = document.getElementById("author")
+const weather = document.getElementById("weather")
+
+
+//DISPLAY TIME
+setInterval (() => { //same to setTimeout (so that it updates every min)
     document.getElementById("time").innerText = `${new Date().toLocaleTimeString("en-US", {timeStyle: "short"})}` //08:59 AM short means no second included
 }, 1000)
 
+//DISPLAY BACKGROUND IMG
 const getBkgImg = async () => { 
     try{
         const res = await fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
@@ -30,6 +38,7 @@ const getBkgImg = async () => {
 
 getBkgImg()
 
+// DISPLAY CRYPTO CURRENCIES
 const getCryptos = async () => {
     try{
         const res = await fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
@@ -54,3 +63,29 @@ const getCryptos = async () => {
 }
 
 getCryptos()
+
+//DISPLAY WEATHER
+let latitude
+let longitude
+
+const getWeather = async () => {
+    navigator.geolocation.getCurrentPosition(async position => {
+        latitude = position.coords.latitude
+        longitude = position.coords.longitude
+        console.log(latitude, longitude)
+
+        try{
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${appid}`)
+            if (!res.ok){throw new Error (`HTTP error! Status: ${res.status}`)}
+            const data = await res.json()
+            console.log(data)
+            weather.innerText = `${Math.round(data.main.temp)} °C`
+        }
+        catch (error) {
+            console.log(error)
+        }
+    })
+}
+
+getWeather()
+
