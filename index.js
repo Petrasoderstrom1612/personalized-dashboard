@@ -78,8 +78,12 @@ const getWeather = async () => {
             const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${appid}&units=metric`)
             if (!res.ok){throw new Error (`HTTP error! Status: ${res.status}`)}
             const data = await res.json()
-            console.log(data)
-            weather.innerText = `${Math.round(data.main.temp)} °C`
+            console.log("weather data", data)
+            weather.innerHTML = 
+            `<p>${Math.round(data.main.temp)} °C</p>
+             <p>${data.name}</p>
+             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}"/>
+            `
         }
         catch (error) {
             console.log(error)
