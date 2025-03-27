@@ -52,9 +52,9 @@ const getCryptos = async () => {
         `
         
         document.getElementById("crypto").innerHTML += `
-        <p>🎯: ${data.market_data.current_price.sek} SEK</p>
-        <p>👆: ${data.market_data.low_24h.sek} SEK</p>
-        <p>👇: ${data.market_data.high_24h.sek} SEK</p>
+        <p>💹: ${data.market_data.current_price.sek} SEK</p>
+        <p>🔼: ${data.market_data.low_24h.sek} SEK</p>
+        <p>🔽: ${data.market_data.high_24h.sek} SEK</p>
         `
     }
     catch (error) {
