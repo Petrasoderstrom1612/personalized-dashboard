@@ -9,9 +9,6 @@ html, body {
 
 body{
     background: no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -mos-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     color: white;
     text-shadow: 1px 1px 2px #474747;
