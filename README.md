@@ -1,4 +1,4 @@
-# personalized-dashboard
+# personalized-dashboard chrome extension for checking bitcoin rates and weather all using async api calls
 
 comments to manifest.json that creates extension
 
