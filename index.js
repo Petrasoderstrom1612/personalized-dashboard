@@ -29,17 +29,22 @@ const getBkgImg = async () => {
                 console.error("Image URL not found in data")
                 document.body.style.backgroundImage = `url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDI4MjA5NzV8&ixlib=rb-4.0.3&q=85")` //hardcoded value
             }
-        }catch (error) { // ** 
-            console.error("error fetching img", error)
-            author.innerText = `By: Federico Respini`
-            document.body.style.backgroundImage = `url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDI4MjA5NzV8&ixlib=rb-4.0.3&q=85")` //hardcoded value
+    }
+    catch (error) { // ** 
+        console.error("error fetching img", error)
+        author.innerText = `By: Federico Respini`
+        document.body.style.backgroundImage = `url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDI4MjA5NzV8&ixlib=rb-4.0.3&q=85")` //hardcoded value
+    }
+    finally{ //this block of code is always run if catch fails
+        author.innerText = `By: Federico Respini`
+        document.body.style.backgroundImage = `url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDI4MjA5NzV8&ixlib=rb-4.0.3&q=85")` //hardcoded value
     }
 }
 
 getBkgImg()
 
 // DISPLAY CRYPTO CURRENCIES
-const getCryptos = async () => {
+// just an example that you do not need to nest fetch in a function, the async is underunderstood
     try{
         const res = await fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
         if (!res.ok){throw new Error (`HTTP error! Status: ${res.status}`)}
@@ -60,9 +65,22 @@ const getCryptos = async () => {
     catch (error) {
         console.error(error)
     }
-}
+    finally{
+        document.getElementById("crypto-top").innerHTML = `
+        <img src="https://coin-images.coingecko.com/coins/images/5/small/dogecoin.png?1696501409" title="crypto logo" alt="crypto logo"/>
+        <span>Bitcoin</span>
+        `
+        
+        document.getElementById("crypto").innerHTML += `
+        <p>💹: okänt värde SEK</p>
+        <p>🔼: okänt värde SEK</p>
+        <p>🔽: okänt värde SEK</p>
+        `
+    }
 
-getCryptos()
+
+
+
 
 //DISPLAY WEATHER
 let latitude
@@ -87,6 +105,13 @@ const getWeather = async () => {
         }
         catch (error) {
             console.log(error)
+        }
+        finally{
+            weather.innerHTML = 
+            `<img class="weather-img" src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}"/>
+             <p class="weather-temperature">unknown temperature for the moment</p>
+             <p class="weather-city">unknown city for the moment</p>
+            `
         }
     })
 }
