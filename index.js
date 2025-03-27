@@ -80,9 +80,9 @@ const getWeather = async () => {
             const data = await res.json()
             console.log("weather data", data)
             weather.innerHTML = 
-            `<p>${Math.round(data.main.temp)} °C</p>
-             <p>${data.name}</p>
-             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}"/>
+            `<img class="weather-img" src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}"/>
+             <p class="weather-temperature">${Math.round(data.main.temp)} °C</p>
+             <p class="weather-city">${data.name}</p>
             `
         }
         catch (error) {

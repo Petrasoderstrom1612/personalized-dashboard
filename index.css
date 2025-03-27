@@ -46,3 +46,27 @@ div#crypto-top > span{
     margin-left: 10px;
     align-self: center;
 }
+
+/* weather section */
+.weather{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-self: flex-start;
+}
+
+.weather-img{
+    width:70px;
+}
+
+.weather-temperature{
+    font-size:1.7rem;
+}
+
+.weather-city{ /* within flex-wrap wrap positions itself separately*/
+    width:100%;
+    text-align: right; /*super important property*/
+    font-size:1.5rem;
+    margin:0;
+}
